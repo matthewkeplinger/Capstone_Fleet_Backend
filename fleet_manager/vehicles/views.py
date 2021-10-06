@@ -9,14 +9,14 @@ from django.contrib.auth.models import User
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_all_cars(request):
+def get_all_vehicles(request):
     vehicles = Vehicle.objects.all()
     serializer = VehicleSerializer(vehicles, many=True)
     return Response(serializer.data)
 
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
-def user_cars(request):
+def user_vehicles(request):
     print('User', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'POST':
         serializer = VehicleSerializer(data=request.data)
