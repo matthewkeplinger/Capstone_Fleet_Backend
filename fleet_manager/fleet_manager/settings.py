@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
     'vehicles.apps.VehiclesConfig',
-    'services.apps.ServicesConfig'
+    'services.apps.ServicesConfig',
+    'vehicle_services.apps.VehicleServicesConfig'
 ]
 
 MIDDLEWARE = [
