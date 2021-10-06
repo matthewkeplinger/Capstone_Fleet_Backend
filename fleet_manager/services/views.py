@@ -18,14 +18,9 @@ def get_all_services(request):
 @permission_classes([AllowAny])
 # @permission_classes([IsAuthenticated])
 def vehicle_services(request):
-    print('User', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == 'POST':
         serializer = ServiceSerializer(data=request.data)
         if serializer.is_valid():
-            # serializer.save(user = request.user)
+            serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
-    # elif request.method == 'GET':
-    #     services = Service.objects.filter(vehicle_id=request.vehicle.id)
-    #     serializer = ServiceSerializer(services, many = True)
-    #     return Response(serializer.data)
