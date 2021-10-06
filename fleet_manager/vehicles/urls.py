@@ -4,5 +4,5 @@ from vehicles import views
 
 urlpatterns = [
     path('all/', views.get_all_vehicles),
-    path('', views.user_vehicles),
+    path('my-garage/', views.user_vehicles),
 ]

@@ -15,8 +15,8 @@ def get_all_services(request):
     return Response(serializer.data)
 
 @api_view(['POST', 'GET'])
-@permission_classes([AllowAny])
-# @permission_classes([IsAuthenticated])
+# @permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def vehicle_services(request):
     if request.method == 'POST':
         serializer = ServiceSerializer(data=request.data)
