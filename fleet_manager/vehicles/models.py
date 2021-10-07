@@ -13,3 +13,6 @@ class Vehicle(models.Model):
     license_plate = models.CharField(max_length = 30)
     VIN = models.CharField(max_length = 17)
     maintenance_cost = models.IntegerField()
+
+    def __str__(self):
+        return self.body

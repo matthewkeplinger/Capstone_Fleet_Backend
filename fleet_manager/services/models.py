@@ -6,3 +6,6 @@ class Service(models.Model):
     mileage_interval = models.IntegerField()
     service_cost = models.IntegerField()
     part_used = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.body

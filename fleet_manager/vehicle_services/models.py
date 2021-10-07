@@ -7,3 +7,6 @@ class VehicleService(models.Model):
     service_id = models.ForeignKey('services.Service', on_delete = models.CASCADE, null = True)
     mileage_performed = models.IntegerField()
     date_performed = models.DateField()
+
+    def __str__(self):
+        return self.body
