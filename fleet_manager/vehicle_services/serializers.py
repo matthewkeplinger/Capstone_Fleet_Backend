@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Service
+from .models import VehicleService
 
-class ServiceSerializer(serializers.ModelSerializer):
+class VehicleServiceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Service
+        model = VehicleService
         fields = ['vehicle_id','service_id','mileage_performed','date_performed']
