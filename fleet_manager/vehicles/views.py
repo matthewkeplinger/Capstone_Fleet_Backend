@@ -6,6 +6,15 @@ from rest_framework.decorators import api_view, permission_classes
 from .models import Vehicle
 from .serializers import VehicleSerializer
 from django.contrib.auth.models import User
+from vehicle_services.serializers import VehicleServiceSerializer
+from vehicle_services.models import VehicleService
+
+
+from rest_framework import viewsets
+from rest_framework import generics
+from rest_framework import filters
+
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
@@ -38,3 +47,7 @@ def update_vehicle(request):
             serializer.save(user = request.user)
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    
+
+
+

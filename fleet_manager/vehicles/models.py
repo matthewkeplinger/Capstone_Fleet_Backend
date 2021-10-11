@@ -15,5 +15,5 @@ class Vehicle(models.Model):
     maintenance_cost = models.IntegerField()
     image= models.CharField(max_length = 100, blank = True, null = True)
 
-    def __str__(self):
-        return self.body
+    # def __str__(self):
+    #     return self.body

@@ -8,5 +8,5 @@ class VehicleService(models.Model):
     mileage_performed = models.IntegerField()
     date_performed = models.DateField()
 
-    def __str__(self):
-        return self.body
+    # def __str__(self):
+    #     return self.body

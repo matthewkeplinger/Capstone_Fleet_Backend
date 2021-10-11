@@ -7,6 +7,10 @@ from .models import VehicleService
 from .serializers import VehicleServiceSerializer
 from django.contrib.auth.models import User
 
+from rest_framework import viewsets
+from rest_framework import generics
+from rest_framework import filters
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_service_records(request):
@@ -33,6 +37,11 @@ def vehicle_service_records(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_vehicle_history(request, vehicle_id):
-    vehicle_services = VehicleService.objects.filter(vehicle_id=vehicle_id)
+    vehicle_services = VehicleService.objects.filter(vehicle_id=vehicle_id).prefetch_related("service_serializer")
     serializer = VehicleServiceSerializer(vehicle_services, many=True)
     return Response(serializer.data)
+
+class VehicleAPIView(viewsets.ModelViewSet):  
+
+    queryset = VehicleService.objects.all()
+    serializer_class = VehicleServiceSerializer
