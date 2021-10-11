@@ -28,3 +28,11 @@ def vehicle_service_records(request):
         vehicles = VehicleService.objects.filter(vehicle_id=request.vehicle.id)
         serializer = VehicleServiceSerializer(vehicles, many = True)
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_vehicle_history(request, vehicle_id):
+    vehicle_services = VehicleService.objects.filter(vehicle_id=vehicle_id)
+    serializer = VehicleServiceSerializer(vehicle_services, many=True)
+    return Response(serializer.data)
