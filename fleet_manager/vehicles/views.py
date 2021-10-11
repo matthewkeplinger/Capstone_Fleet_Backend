@@ -28,3 +28,13 @@ def user_vehicles(request):
         vehicles = Vehicle.objects.filter(user_id=request.user.id)
         serializer = VehicleSerializer(vehicles, many = True)
         return Response(serializer.data)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_vehicle(request):
+    if request.method == 'PUT':
+        serializer = VehicleSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user = request.user)
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)

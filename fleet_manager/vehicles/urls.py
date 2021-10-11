@@ -5,4 +5,5 @@ from vehicles import views
 urlpatterns = [
     path('all/', views.get_all_vehicles),
     path('my-garage/', views.user_vehicles),
+    path('update/<int:pk>', views.update_vehicle),
 ]
