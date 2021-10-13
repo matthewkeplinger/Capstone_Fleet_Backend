@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,17 +11,35 @@ from vehicle_services.serializers import VehicleServiceSerializer
 from vehicle_services.models import VehicleService
 
 
-from rest_framework import viewsets
-from rest_framework import generics
-from rest_framework import filters
+# from rest_framework import viewsets
+# from rest_framework import generics
+# from rest_framework import filters
 
 
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_all_vehicles(request):
+    print('get_all_vehicles METHOD HIT')
     vehicles = Vehicle.objects.all()
     serializer = VehicleSerializer(vehicles, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_object(self,pk):
+    print('get_object METHOD HIT')
+    try:
+        return Vehicle.objects.filter(pk=pk)
+    except Vehicle.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get(request, pk):
+    print('get METHOD HIT')
+    vehicle = Vehicle.objects.filter(pk=pk)
+    serializer = VehicleSerializer(vehicle, many=True)
     return Response(serializer.data)
 
 @api_view(['POST', 'GET'])
